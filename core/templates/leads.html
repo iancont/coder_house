@@ -1,6 +1,10 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<form method="get" action="{% url 'leads' %}">
+  <input type="text" name="q" placeholder="Buscar leads" value="{{request.GET.q }}">
+  <button type="submit">Search</button>
+</form>
 
 <table class="table table-striped table-hover table-bordered">
   <thead class="table-dark">
@@ -15,6 +19,7 @@
   <tbody>
     
 {% if leads %}
+
 	{% for lead in leads %}
 		<tr>
 			<td>{{ lead.record }}</td>

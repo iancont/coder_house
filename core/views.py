@@ -101,5 +101,9 @@ def about(request):
     return render(request, "about.html")
 
 def leads(request):
-    leads = Lead.objects.all()
+    query = request.GET.get("q")
+    if query:
+        leads = Lead.objects.filter(priority__icontains=query) 
+    else:
+        leads = Lead.objects.all()
     return render(request, "leads.html", {"leads": leads})
